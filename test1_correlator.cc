@@ -129,8 +129,8 @@ for(int i =0; i<MaxTracks; i++){
 
 }
 */
-cout << "constants"<< MaxTrackEta << "\t"  << NCrystalsInEta << "\t"  << conv_track_eta_calc << "\t" << conv_track_eta << endl;
-cout << "constants for phi" << MaxTrackPhi << "\t"  << NCrystalsInPhi << "\t" << conv_track_phi_calc << "\t" << conv_track_phi << endl;
+cout << "constants"<< MaxTrackEta << "\t"  << NCrystalsInEta << "\t"  << conv_track_eta_calc << "\t" << endl;
+cout << "constants for phi" << MaxTrackPhi << "\t"  << NCrystalsInPhi << "\t" << conv_track_phi_calc << "\t" << endl;
 printf("other print");
 printf("%d\t", MaxTrackEta);
 printf("%d\t", MaxTrackPhi);

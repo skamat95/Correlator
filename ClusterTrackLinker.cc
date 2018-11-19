@@ -66,8 +66,10 @@ bool getClusterTrackLinker(uint16_t clusterET[NCaloLayer1Eta][NCaloLayer1Phi],
     }
   }
 
-	float track_peak_eta[MaxTracks];
-	float track_peak_phi[MaxTracks];
+	ap_fixed<16,8> track_peak_eta[MaxTracks];
+	ap_fixed<16,8> track_peak_phi[MaxTracks];
+//  float track_peak_eta[MaxTracks];
+//  float track_peak_phi[MaxTracks];
 #pragma HLS ARRAY_PARTITION variable=track_peak_eta dim=0
 #pragma HLS ARRAY_PARTITION variable=track_peak_phi dim=0
 
@@ -103,9 +105,12 @@ bool getClusterTrackLinker(uint16_t clusterET[NCaloLayer1Eta][NCaloLayer1Phi],
 
 //	  uint16_t track_crystal_eta = int(track_peak_eta[track] % NCrystalsPerEtaPhi); //Offset
 //	  uint16_t track_crystal_phi = int(track_peak_phi[track] % NCrystalsPerEtaPhi);
+//
+//	  uint16_t track_crystal_eta = fmod(track_peak_eta[track],  NCrystalsPerEtaPhi); //Offset
+//	  uint16_t track_crystal_phi = fmod(track_peak_phi[track], NCrystalsPerEtaPhi);
 
-	  uint16_t track_crystal_eta = fmod(track_peak_eta[track],  NCrystalsPerEtaPhi); //Offset
-	  uint16_t track_crystal_phi = fmod(track_peak_phi[track], NCrystalsPerEtaPhi);
+	  uint16_t track_crystal_eta = track_peak_eta[track] - (track_tower_eta * NCrystalsPerEtaPhi); //Offset
+	  uint16_t track_crystal_phi = track_peak_phi[track] - (track_tower_phi * NCrystalsPerEtaPhi);
 
 	  cout<<"offset: track_crystal_eta"<< track_crystal_eta << endl;
 	  cout<<"offset: track_crystal_phi"<< track_crystal_phi << endl;
