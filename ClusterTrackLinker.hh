@@ -14,13 +14,15 @@ const uint16_t MaxTracks = 10;
 const uint16_t MaxTrackPT = 0xFFFF;
 // Barrel calorimeter eta limit is 1.479 and is measured with LSB = 0.0005 - making it up :)
 // Temporarily deal with only positive eta - in principle MaxTrackEta should be double this!
-const uint16_t MaxTrackEta = int(1.479 / 0.0005);	//295
+const uint16_t MaxTrackEta = int(1.479 / 0.0005);	//2958
 const uint16_t conv_cluster_eta = MaxTrackEta / NCrystalsInEta;
-const ap_ufixed<10,2> conv_track_eta = 0.2881355; //NCrystalsInEta / MaxTrackEta;
+const ap_ufixed<10,2> conv_track_eta_calc = 0.0287356322; //NCrystalsInEta / MaxTrackEta;
+const float conv_track_eta = ap_ufixed<10,2>(NCrystalsInEta / MaxTrackEta);
 // Barrel calorimeter eta phi coverage is measured with LSB = 0.0001 - making it up :)
-const uint16_t MaxTrackPhi = int(2.0 * 3.1415927 / 0.0001);
+const uint16_t MaxTrackPhi = int(2.0 * 3.1415927 / 0.0001); //62831
 const uint16_t conv_cluster_phi = MaxTrackPhi / NCrystalsInPhi;
-const ap_ufixed<16,2> conv_track_phi = 0.0057296; //NCrystalsInPhi / MaxTrackPhi;
+const ap_ufixed<16,2> conv_track_phi_calc = 0.0057296; //NCrystalsInPhi / MaxTrackPhi;
+const float conv_track_phi = ap_ufixed<10,2>(NCrystalsInPhi / MaxTrackPhi);
 
 const uint16_t MaxNeutralClusters = NCaloLayer1Eta * NCaloLayer1Phi;
 

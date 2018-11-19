@@ -30,18 +30,18 @@ int main(int argc, char **argv) {
 */
 
 	uint16_t clusterET[NCaloLayer1Eta][NCaloLayer1Phi];
-				   uint16_t peakEta[NCaloLayer1Eta][NCaloLayer1Phi];
-				   uint16_t peakPhi[NCaloLayer1Eta][NCaloLayer1Phi];
-				   uint16_t trackPT[MaxTracks];
-				   uint16_t trackEta[MaxTracks];
-				   uint16_t trackPhi[MaxTracks];
-				   uint16_t linkedTrackPT[MaxTracks];
-				   uint16_t linkedTrackEta[MaxTracks];
-				   uint16_t linkedTrackPhi[MaxTracks];
-				   //float linkedTrackQuality[MaxTracks],
-				   uint16_t neutralClusterET[MaxNeutralClusters];
-				   uint16_t neutralClusterEta[MaxNeutralClusters];
-				   uint16_t neutralClusterPhi[MaxNeutralClusters];
+	uint16_t peakEta[NCaloLayer1Eta][NCaloLayer1Phi];
+	uint16_t peakPhi[NCaloLayer1Eta][NCaloLayer1Phi];
+	uint16_t trackPT[MaxTracks];
+	uint16_t trackEta[MaxTracks];
+	uint16_t trackPhi[MaxTracks];
+	uint16_t linkedTrackPT[MaxTracks];
+	uint16_t linkedTrackEta[MaxTracks];
+	uint16_t linkedTrackPhi[MaxTracks];
+	//float linkedTrackQuality[MaxTracks];
+	uint16_t neutralClusterET[MaxNeutralClusters];
+	uint16_t neutralClusterEta[MaxNeutralClusters];
+	uint16_t neutralClusterPhi[MaxNeutralClusters];
 
 
   if(argc == 2) srandom((unsigned int) atoi(argv[1]));
@@ -111,10 +111,11 @@ clusterET[0][0] = 10;
 peakEta[0][0] = 2;
 peakPhi[0][0] = 2;
 trackPT[1] = 9;
-trackEta[1] = 20;
+trackEta[1] = 1000;
 trackPhi[1] = 100;
 
 //print inputs again
+/*
 for(int i = 0; i<NCaloLayer1Eta; i++){
 	  for(int j=0; j<NCaloLayer1Phi; j++){
 
@@ -124,12 +125,18 @@ for(int i = 0; i<NCaloLayer1Eta; i++){
 }
 
 for(int i =0; i<MaxTracks; i++){
-	  cout <<"inputs II" << trackPT[i] << "\t" << trackEta[i] << "\t"""<< trackPhi[i] << endl;
+	  cout <<"inputs II" << trackPT[i] << "\t" << trackEta[i] << "\t"<< trackPhi[i] << endl;
 
 }
-cout << "constants"<< MaxTrackEta << "\t"  << NCrystalsInEta << "\t"  << conv_track_eta << endl;
-cout << "constants for phi" << MaxTrackPhi << "\t"  << NCrystalsInPhi << "\t" << conv_track_phi << endl;
-/*
+*/
+cout << "constants"<< MaxTrackEta << "\t"  << NCrystalsInEta << "\t"  << conv_track_eta_calc << "\t" << conv_track_eta << endl;
+cout << "constants for phi" << MaxTrackPhi << "\t"  << NCrystalsInPhi << "\t" << conv_track_phi_calc << "\t" << conv_track_phi << endl;
+printf("other print");
+printf("%d\t", MaxTrackEta);
+printf("%d\t", MaxTrackPhi);
+printf("%2.8f\t", conv_track_eta_calc);
+printf("%2.8f\t", conv_track_phi_calc);
+
 
 //call the function in main
   getClusterTrackLinker(
@@ -146,7 +153,7 @@ cout << "constants for phi" << MaxTrackPhi << "\t"  << NCrystalsInPhi << "\t" <<
   neutralClusterET,
   neutralClusterEta,
   neutralClusterPhi);
-  */
+
 /*
   //print outputs
   for(int i =0; i<MaxTracks; i++){
@@ -158,5 +165,10 @@ cout << "constants for phi" << MaxTrackPhi << "\t"  << NCrystalsInPhi << "\t" <<
   	  cout <<"outputs II" << neutralClusterET[i] << "\t" <<neutralClusterEta[i] << "\t" << neutralClusterPhi[i] << endl;
     }
 */
+cout<<"Max_track"<<MaxTrackEta<<endl;
+	cout<<"track_eta" << conv_track_eta_calc<< endl;
+	cout<<"track_phi" << conv_track_phi_calc<< endl;
+	cout<<"clus_eta"<<conv_cluster_eta<<endl;
+	cout<<"clus_phi"<<conv_cluster_phi<<endl;
   return 0;
 }
